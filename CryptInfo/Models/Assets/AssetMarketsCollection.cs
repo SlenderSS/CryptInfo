@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace CryptInfo.Models.Assets
 {
-    internal class AssetHistory
+    class AssetMarketsCollection
     {
         [JsonProperty("data")]
-        public AssetHistoryData[] Data { get; set; }
+        public AssetMarketData[] Data { get; set; }
 
         [JsonProperty("timestamp")]
         public long Timestamp { get; set; }

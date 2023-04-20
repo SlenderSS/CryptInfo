@@ -70,16 +70,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Infrastructure\Commands\CloseAppCommand.cs" />
+    <Compile Include="Infrastructure\Commands\Command.cs" />
     <Compile Include="Models\Assets\AssetData.cs" />
     <Compile Include="Models\Assets\Asset.cs" />
-    <Compile Include="Models\Assets\AssetHistory.cs" />
+    <Compile Include="Models\Assets\AssetHistoryCollection.cs" />
     <Compile Include="Models\Assets\AssetHistoryData.cs" />
     <Compile Include="Models\Assets\AssetMarketData.cs" />
-    <Compile Include="Models\Assets\AssetMarkets.cs" />
+    <Compile Include="Models\Assets\AssetMarketsCollection.cs" />
     <Compile Include="Models\Assets\AssetsCollection.cs" />
+    <Compile Include="Models\Markets\MarketData.cs" />
+    <Compile Include="Models\Markets\MarketsCollection.cs" />
     <Compile Include="Services\CryptService.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
-    <Compile Include="ViewModels\Base\HomeViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>

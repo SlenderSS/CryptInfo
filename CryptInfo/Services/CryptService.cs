@@ -15,12 +15,12 @@ namespace CryptInfo.Services
         public HttpClient httpClient;
 
 
-        public async Task GetData(params string[] parts)
-        {
-            var request = new HttpRequestMessage(HttpMethod.Get, string.Join("/", _baseURL, parts));
+        //public async Task GetData(params string[] parts)
+        //{
+        //    var request = new HttpRequestMessage(HttpMethod.Get, string.Join("/", _baseURL, parts));
 
 
-        }
+        //}
 
 
 
