@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CryptInfo.Models.Assets
 {
-    internal class Asset
+    internal class Asset : ViewModels.Base.BaseViewModel
     {
         [JsonProperty("data")]
         public AssetData Data { get; set; }

@@ -17,5 +17,12 @@ namespace CryptInfo.ViewModels.Base
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
+
+        protected virtual bool Set<T>(ref T field, T value, [CallerMemberName] string PropertyName = null)
+        {
+            if (Equals(field, value)) return false;
+            OnPropertyChanged(PropertyName);
+            return true;
+        }
     }
 }

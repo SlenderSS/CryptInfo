@@ -4,6 +4,17 @@
              xmlns:local="clr-namespace:CryptInfo"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                
+                
+                <ResourceDictionary Source="Resources/Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/TextStyles.xaml"/>
+                <ResourceDictionary Source="Resources/DataTemplates/DataTemplate.xaml" />
+                
+                
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+       
     </Application.Resources>
 </Application>

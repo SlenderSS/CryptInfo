@@ -2,7 +2,7 @@
 
 namespace CryptInfo.Models.Assets
 {
-    internal class AssetData
+    internal class AssetData : ViewModels.Base.BaseViewModel
     {
         [JsonProperty("id")]
         public string Id { get; set; }

@@ -5,21 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CryptInfo"
         xmlns:vm="clr-namespace:CryptInfo.ViewModels"
+        xmlns:cmd="clr-namespace:CryptInfo.Infrastructure.Commands"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-       
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
         Title="MainWindow" Height="750" Width="1200">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
+       
     </Window.DataContext>
-    
-    
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition />
+    <Window.Resources>
+        <cmd:CloseAppCommand x:Key="CloseAppCommand"/>
+        <cmd:MoveWindowCommand x:Key="MoveWindowCommand"/>
+        
+        
+    </Window.Resources>
 
+
+    <Grid Background="#323C42">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="100"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
+
+
+        <Grid Grid.Row="0" Background="#292F36">
+            <Grid.InputBindings>
+                <MouseBinding Gesture="LeftClick" Command="{StaticResource MoveWindowCommand}"/>
+            </Grid.InputBindings>
+            <DockPanel  >
+                <TextBlock DockPanel.Dock="Left" Text="{Binding Title}" Style="{StaticResource HeaderStyle}" />
+                <Button DockPanel.Dock="Right" Style="{StaticResource ExitApp}"
+                        Command="{StaticResource CloseAppCommand}"
+                        />
+            </DockPanel>
+        </Grid>
+        <Grid Grid.Row="1" Background="#323C42">
+           
+        </Grid>
     </Grid>
 </Window>

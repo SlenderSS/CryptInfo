@@ -3,7 +3,7 @@ using System;
 
 namespace CryptInfo.Models.Assets
 {
-    internal class AssetHistoryData
+    internal class AssetHistoryData : ViewModels.Base.BaseViewModel
     {
         [JsonProperty("priceUsd")]
         public string PriceUsd { get; set; }

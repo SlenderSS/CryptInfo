@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CryptInfo.Models.Markets
 {
-    internal class MarketData
+    internal class MarketData : ViewModels.Base.BaseViewModel
     {
         [JsonProperty("exchangeId")]
         public string ExchangeId { get; set; }
