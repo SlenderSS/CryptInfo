@@ -4,14 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CryptInfo"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vm="clr-namespace:CryptInfo.ViewModels"
         xmlns:cmd="clr-namespace:CryptInfo.Infrastructure.Commands"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        Background="Transparent"
+        Background="{DynamicResource MaterialDesignPaper}"
         AllowsTransparency="True"
-        Title="MainWindow" Height="750" Width="1200">
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Height="750" Width="1200">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
        
@@ -24,15 +26,15 @@
     </Window.Resources>
 
 
-    <Grid Background="#323C42">
+    <Grid Background="{StaticResource MainPanel}">
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="100"/>
-            <RowDefinition />
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
 
-        <Grid Grid.Row="0" Background="#292F36">
+        <Grid Grid.Row="0" Background="{StaticResource HeaderPanel}">
             <Grid.InputBindings>
                 <MouseBinding Gesture="LeftClick" Command="{StaticResource MoveWindowCommand}"/>
             </Grid.InputBindings>
@@ -44,7 +46,13 @@
             </DockPanel>
         </Grid>
         <Grid Grid.Row="1" Background="#323C42">
-           
+            <StackPanel Orientation="Horizontal" >
+                <!--<Button Style="{StaticResource MetroButton}" Height="50" Width="150" />-->
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <ContentControl Content="{Binding CurrentView}"/>
         </Grid>
     </Grid>
 </Window>

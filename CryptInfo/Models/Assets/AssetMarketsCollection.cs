@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CryptInfo.Models.Assets
 {
-    internal class AssetMarketsCollection : ViewModels.Base.BaseViewModel
+    internal class AssetMarketsCollection : ObservableCollection<AssetMarketsCollection>
     {
         [JsonProperty("data")]
         public ObservableCollection<AssetMarketData>Data { get; set; }

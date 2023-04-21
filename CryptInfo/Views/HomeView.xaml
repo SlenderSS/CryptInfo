@@ -4,9 +4,42 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CryptInfo.Views"
+             xmlns:vm="clr-namespace:CryptInfo.ViewModels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             
+             d:DesignHeight="600" d:DesignWidth="1200">
+    <UserControl.DataContext>
+        <vm:HomeViewModel/>
+    </UserControl.DataContext>
+    <Grid Background="{StaticResource MainPanel}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="The most popular cryptocurrency" 
+                   Style="{StaticResource  HeaderStyle}" 
+                   HorizontalAlignment="Center" 
+                   FontSize="35"
+                   FontFamily="{StaticResource MaterialDesignFont}"
+                   FontStyle="Italic"/>
+
+
+        <Border Grid.Row="1" Margin="30,20,30,40" Background="{StaticResource BorderBackground}" CornerRadius="20">
+            <DataGrid x:Name="myDataGrid"   AutoGenerateColumns="False" ItemsSource="{Binding TopCryptocurrency.Data}" 
+                  materialDesign:DataGridAssist.CellPadding="13 8" 
+                  materialDesign:DataGridAssist.ColumnHeaderPadding="13 8"          
+                  >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
+                    <DataGridTextColumn Header="Age" Binding="{Binding Age}" Width="100" />
+                    <DataGridCheckBoxColumn Header="Is Married" Binding="{Binding IsMarried}" Width="100" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Border>
+        <Grid Grid.Row="1">
             
+        </Grid>
     </Grid>
 </UserControl>
