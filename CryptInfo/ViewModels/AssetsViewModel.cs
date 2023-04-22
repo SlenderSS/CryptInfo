@@ -3,9 +3,11 @@ using CryptInfo.Models.Assets;
 using CryptInfo.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace CryptInfo.ViewModels
@@ -17,7 +19,55 @@ namespace CryptInfo.ViewModels
         private readonly Action<string, AssetData> _action;
 
         private AssetsCollection _assets;
-        public AssetsCollection AssetsCol { get => _assets; set { Set(ref _assets, value); OnPropertyChanged(); } }
+        public AssetsCollection AssetsCol { get => _assets; 
+            set 
+            {
+                if(!(Set(ref _assets, value))) return;
+                _AssetsCollection.Source = value?.Data;
+                
+                OnPropertyChanged(nameof(AssetsCollection)); 
+            } 
+        }
+
+
+
+
+
+
+
+
+        #region Assets filter
+
+        private CollectionViewSource _AssetsCollection = new CollectionViewSource();
+        public ICollectionView AssetsCollection => _AssetsCollection?.View;
+
+
+        private string _assetFilterText;
+
+        public string AssetFilterText
+        {
+            get => _assetFilterText; set
+            {
+                if(!Set(ref _assetFilterText, value)) return;
+                _AssetsCollection.View.Refresh();
+
+            }
+        }
+
+
+        private void OnAssetFiltered(object sender, FilterEventArgs E)
+        {
+            if (!(E.Item is AssetData assetData)) return;
+
+            var filterText = _assetFilterText;
+            if (string.IsNullOrWhiteSpace(filterText)) return;
+
+            if (assetData.Symbol.Contains(filterText)) return;
+            if (assetData.Name.Contains(filterText)) return;
+
+            E.Accepted = false;
+        }
+        #endregion
 
 
 
@@ -36,7 +86,7 @@ namespace CryptInfo.ViewModels
             AssetsCol = assetsCollection;
 
 
-
+            _AssetsCollection.Filter += OnAssetFiltered; 
         }
 
     }

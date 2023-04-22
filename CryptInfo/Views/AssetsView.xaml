@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
 
         <TextBox Margin="0,5,50,10" 
-                 Text="Search"
+                 Text="{Binding AssetFilterText, UpdateSourceTrigger=PropertyChanged}"
                  FontSize="23" 
                  Width="400" 
                  HorizontalAlignment="Right" 
@@ -36,7 +36,7 @@
             <Border.Resources>
                 <CollectionViewSource x:Key="AssetsCollection" Source="{Binding AssetsCol.Data}"/>
             </Border.Resources>
-            <DataGrid ItemsSource="{Binding Source={StaticResource AssetsCollection}}" 
+            <DataGrid ItemsSource="{Binding AssetsCollection}" 
                       x:Name="AssetsDataGrid"
                       Height="480"
                      
@@ -47,7 +47,15 @@
                       HorizontalGridLinesBrush="Transparent"
                       IsReadOnly="True"                                               
                       CellStyle="{StaticResource DataGridCellStyle}"
-                      FontSize="18">
+                      FontSize="18"
+                      VirtualizingPanel.IsContainerVirtualizable="True"
+                      VirtualizingPanel.IsVirtualizing="True"
+                      VirtualizingPanel.VirtualizationMode="Recycling">
+                <DataGrid.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </DataGrid.ItemsPanel>
 
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDoubleClick">
@@ -55,8 +63,8 @@
                                                Command="{Binding AssetDetailsCommand}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                
-                
+
+
                 <DataGrid.Columns>
                     <DataGridTextColumn  Binding="{Binding Rank}" Width="80">
                         <DataGridTextColumn.Header>
@@ -76,8 +84,8 @@
                             <TextBlock Text="Name" Style="{StaticResource DataGridHeaderStyle}"/>
                         </DataGridTextColumn.Header>
                     </DataGridTextColumn>
-                    
-                    
+
+
                     <DataGridTextColumn Binding="{Binding MaxSupply, Converter={StaticResource CurrencyConverter}}" Width="120" >
                         <DataGridTextColumn.Header>
                             <TextBlock Text="MaxSupply" Style="{StaticResource DataGridHeaderStyle}"/>
@@ -106,7 +114,7 @@
                         <DataGridTextColumn.Header>
                             <TextBlock Text="Change(24Hr)" Style="{StaticResource DataGridHeaderStyle}"/>
                         </DataGridTextColumn.Header>
-                        
+
                     </DataGridTextColumn>
 
 
@@ -118,7 +126,7 @@
 
 
                 </DataGrid.Columns>
-                    
+
 
             </DataGrid>
         </Border>
