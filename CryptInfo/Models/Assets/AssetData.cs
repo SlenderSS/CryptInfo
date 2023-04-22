@@ -23,16 +23,16 @@ namespace CryptInfo.Models.Assets
         public double? MaxSupply { get; set; }
         
         [JsonProperty("marketCapUsd")]
-        public double? MarketCapUsd { get; set; }
+        public double? MarketCapUsd { get; set; } //
        
         [JsonProperty("volumeUsd24Hr")]
-        public double? VolumeUsd24Hr { get; set; }
+        public double? VolumeUsd24Hr { get; set; } //
        
         [JsonProperty("priceUsd")]
-        public double? PriceUsd { get; set; }
+        public double? PriceUsd { get; set; } // 
        
         [JsonProperty("changePercent24Hr")]
-        public double? ChangePercent24Hr { get; set; }
+        public double? ChangePercent24Hr { get; set; } //
       
         [JsonProperty("vwap24Hr")]
         public double? Vwap24Hr { get; set; }

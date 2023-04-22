@@ -19,7 +19,7 @@ namespace CryptInfo.Infrastructure.Converters
 
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (!(value is double currency)) return null;
+            if (!(value is double currency)) return "-";
 
             double convertedCurrency;
             if(currency > TRIILLION)

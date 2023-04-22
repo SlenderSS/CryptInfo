@@ -52,22 +52,33 @@ namespace CryptInfo.ViewModels
         #region Commands
 
         public ICommand HomeCommand { get; set; }
-        public ICommand MarketsCommand { get; set; }
+        public ICommand AssetsCommand { get; set; }
 
         #endregion
 
 
 
         private void Home(object obj) => CurrentView = new HomeViewModel(CryptService, GeneralInfo);
-        private void Markets(object obj) => CurrentView = new MarketsViewModel(CryptService);
+        private void Assets(object obj) => CurrentView = new AssetsViewModel(CryptService, AssetsCol, OpenUserControl);
 
 
+
+        private void OpenUserControl(string path, AssetData assetData)
+        {
+            switch (path)
+            {
+                case "AD":
+                    CurrentView = new AssetDetailsViewModel(assetData);
+                    break;
+            }
+
+        }
 
         public MainWindowViewModel()
         {
             #region Commands
             HomeCommand = new LambdaCommand(Home);
-            MarketsCommand = new LambdaCommand(Markets);
+            AssetsCommand = new LambdaCommand(Assets);
 
             #endregion
 
@@ -98,7 +109,8 @@ namespace CryptInfo.ViewModels
 
 
 
-            CurrentView = new HomeViewModel(CryptService, GeneralInfo);
+            //CurrentView = new HomeViewModel(CryptService, GeneralInfo);
+            CurrentView = new AssetsViewModel(CryptService, AssetsCol, OpenUserControl);
         }
     }
 }

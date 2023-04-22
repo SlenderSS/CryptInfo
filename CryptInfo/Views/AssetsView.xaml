@@ -4,13 +4,123 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CryptInfo.Views"
+             xmlns:convert="clr-namespace:CryptInfo.Infrastructure.Converters"
+             xmlns:vm="clr-namespace:CryptInfo.ViewModels"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              Style="{StaticResource Page_Style}"
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance vm:AssetsViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="600" d:DesignWidth="1200"
              Background="{StaticResource MainPanel}">
+    <UserControl.Resources>
+        <convert:CurrencyConverter x:Key="CurrencyConverter"/>
+    </UserControl.Resources>
     <Grid>
-        <Border Style="{StaticResource BorderStyle1}">
-            
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBox Margin="0,5,50,10" 
+                 Text="Search"
+                 FontSize="23" 
+                 Width="400" 
+                 HorizontalAlignment="Right" 
+                 Foreground="#A4A4A4"
+                 Style="{DynamicResource MaterialDesignOutlinedTextBox}" 
+                 />
+
+
+        <Border Grid.Row="1" Style="{StaticResource BorderStyle1}" Margin="20,10,20,40">
+            <Border.Resources>
+                <CollectionViewSource x:Key="AssetsCollection" Source="{Binding AssetsCol.Data}"/>
+            </Border.Resources>
+            <DataGrid ItemsSource="{Binding Source={StaticResource AssetsCollection}}" 
+                      x:Name="AssetsDataGrid"
+                      Height="480"
+                     
+                      SelectedItem="{Binding SelectedAsset}"
+                      AutoGenerateColumns="False"                         
+                      Style="{StaticResource MaterialDesignDataGrid}"
+                      Background="Transparent"
+                      HorizontalGridLinesBrush="Transparent"
+                      IsReadOnly="True"                                               
+                      CellStyle="{StaticResource DataGridCellStyle}"
+                      FontSize="18">
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction CommandParameter="{Binding ElementName=AssetsDataGrid, Path=SelectedItem}"
+                                               Command="{Binding AssetDetailsCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                
+                
+                <DataGrid.Columns>
+                    <DataGridTextColumn  Binding="{Binding Rank}" Width="80">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Rank" Style="{StaticResource DataGridHeaderStyle}"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Binding="{Binding Symbol}" Width="95">
+                        <DataGridTextColumn.Header >
+                            <TextBlock Text="Symbol" Style="{StaticResource DataGridHeaderStyle}"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+
+                    <DataGridTextColumn Binding="{Binding Name}" Width="90" >
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Name" Style="{StaticResource DataGridHeaderStyle}"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    
+                    
+                    <DataGridTextColumn Binding="{Binding MaxSupply, Converter={StaticResource CurrencyConverter}}" Width="120" >
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="MaxSupply" Style="{StaticResource DataGridHeaderStyle}"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Binding="{Binding MarketCapUsd, Converter={StaticResource CurrencyConverter}}" Width="165" >
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Market cap(Usd)" Style="{StaticResource DataGridHeaderStyle}"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Binding="{Binding VolumeUsd24Hr}" Width="*" >
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Volume(24Hr)" Style="{StaticResource DataGridHeaderStyle}"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Binding="{Binding PriceUsd, Converter={StaticResource CurrencyConverter}}" Width="120" >
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Price(Usd)" Style="{StaticResource DataGridHeaderStyle}"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Binding="{Binding ChangePercent24Hr, StringFormat={}{0:#0.00'%'}}" Width="150" >
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Change(24Hr)" Style="{StaticResource DataGridHeaderStyle}"/>
+                        </DataGridTextColumn.Header>
+                        
+                    </DataGridTextColumn>
+
+
+                    <DataGridTextColumn Binding="{Binding Vwap24Hr, Converter={StaticResource CurrencyConverter}}" Width="*" >
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="PriceVwap(24Hr)" Style="{StaticResource DataGridHeaderStyle}"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+
+                </DataGrid.Columns>
+                    
+
+            </DataGrid>
         </Border>
     </Grid>
 </UserControl>

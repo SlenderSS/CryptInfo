@@ -3,7 +3,7 @@
 
     <Style x:Key="BorderStyle1" TargetType="Border">
         <Setter Property="Background" Value="{StaticResource BorderBackground}"/>
-        <Setter Property="Margin" Value="20,20,20,40"/>
+        
         <Setter Property="CornerRadius" Value="20"/>
     </Style>
 </ResourceDictionary>
