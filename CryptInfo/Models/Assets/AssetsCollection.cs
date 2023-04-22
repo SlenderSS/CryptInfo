@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace CryptInfo.Models.Assets
 {
-    internal class AssetsCollection : ViewModels.Base.BaseViewModel
+    internal class AssetsCollection :  ViewModels.Base.BaseViewModel
     {
         [JsonProperty("data")]
         public ObservableCollection<AssetData> Data { get; set; }

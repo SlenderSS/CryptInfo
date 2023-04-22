@@ -3,4 +3,10 @@
     <SolidColorBrush x:Key="HeaderPanel" Color="#292F36"/>
     <SolidColorBrush x:Key="MainPanel" Color="#323C42"/>
     <SolidColorBrush x:Key="BorderBackground" Color="#4B575E" />
+    <SolidColorBrush x:Key="TextColor_1" Color="#7CC5BD"/>
+    <SolidColorBrush x:Key="TextColor_2" Color="#D3D77A"/>
+
+
+
+   
 </ResourceDictionary>

@@ -5,19 +5,77 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CryptInfo.Views"
              xmlns:vm="clr-namespace:CryptInfo.ViewModels"
+             xmlns:cnvt="clr-namespace:CryptInfo.Infrastructure.Converters"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             
+             Style="{StaticResource Page_Style}"
+             d:DataContext="{d:DesignInstance vm:HomeViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="600" d:DesignWidth="1200">
-    <UserControl.DataContext>
-        <vm:HomeViewModel/>
-    </UserControl.DataContext>
+    <UserControl.Resources>
+        
+        <cnvt:CurrencyConverter x:Key="CurrencyConverter"/>
+        
+        <Style x:Key="StackPanelStyle" TargetType="StackPanel">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,20"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+    </UserControl.Resources>
+   
     <Grid Background="{StaticResource MainPanel}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="The most popular cryptocurrency" 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500*"/>
+            <ColumnDefinition Width="700*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Orientation="Vertical" Margin="50,70,20,70">
+            <StackPanel Style="{StaticResource StackPanelStyle}">
+                <TextBlock Text="MARKET CAP - " Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                <TextBlock Text="{Binding GeneralInfo.MarketCapUsd, Converter={StaticResource CurrencyConverter}}" Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+            </StackPanel>
+            <StackPanel Style="{StaticResource StackPanelStyle}">
+                <TextBlock Text="EXCHANGE VOL - " Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                <TextBlock Text="{Binding GeneralInfo.ExchangeVolume, Converter={StaticResource CurrencyConverter}}" Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+            </StackPanel>
+            <StackPanel Style="{StaticResource StackPanelStyle}">
+                <TextBlock Text="ASSETS - " Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                <TextBlock Text="{Binding GeneralInfo.Assets}" Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+            </StackPanel>
+            <StackPanel Style="{StaticResource StackPanelStyle}">
+                <TextBlock Text="EXCHANGES - " Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                <TextBlock Text="{Binding GeneralInfo.Exchanges}" Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+            </StackPanel>
+
+            <StackPanel Style="{StaticResource StackPanelStyle}">
+                <TextBlock Text="MARKETS - " Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                <TextBlock Text="{Binding GeneralInfo.Markets}" Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+            </StackPanel>
+
+            <StackPanel Style="{StaticResource StackPanelStyle}">
+                
+                <TextBlock Text="{Binding GeneralInfo.DominateCurrency}" Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                <TextBlock Text=" DOM INDEX - " Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                <TextBlock Text="{Binding GeneralInfo.DomIndex, StringFormat={}{0:#0.00'%'}}" Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+            </StackPanel>
+
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="1" Margin="10">
+            <TextBlock Grid.Column="1" Text="The most popular cryptocurrency" 
                    Style="{StaticResource  HeaderStyle}" 
                    HorizontalAlignment="Center" 
                    FontSize="35"
@@ -25,21 +83,59 @@
                    FontStyle="Italic"/>
 
 
-        <Border Grid.Row="1" Margin="30,20,30,40" Background="{StaticResource BorderBackground}" CornerRadius="20">
-            <DataGrid x:Name="myDataGrid"   AutoGenerateColumns="False" ItemsSource="{Binding TopCryptocurrency.Data}" 
-                  materialDesign:DataGridAssist.CellPadding="13 8" 
-                  materialDesign:DataGridAssist.ColumnHeaderPadding="13 8"          
-                  >
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
-                    <DataGridTextColumn Header="Age" Binding="{Binding Age}" Width="100" />
-                    <DataGridCheckBoxColumn Header="Is Married" Binding="{Binding IsMarried}" Width="100" />
-                </DataGrid.Columns>
-            </DataGrid>
 
-        </Border>
-        <Grid Grid.Row="1">
-            
-        </Grid>
+            <Border Grid.Column="1" Style="{StaticResource BorderStyle1}">
+                <DataGrid ItemsSource="{Binding TopCryptocurrency}" Height="500"
+                      AutoGenerateColumns="False"
+                      Style="{StaticResource MaterialDesignDataGrid}"
+                      Background="Transparent"
+                      HorizontalGridLinesBrush="Transparent"
+                      IsReadOnly="True"                         
+                      IsEnabled="False"
+                      CellStyle="{StaticResource DataGridCellStyle}"
+                      FontSize="18">
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn  Binding="{Binding Rank}" Width="*">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Rank" Style="{StaticResource DataGridHeaderStyle}"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        
+                        <DataGridTextColumn Binding="{Binding Symbol}" Width="*">
+                            <DataGridTextColumn.Header >
+                                <TextBlock Text="Symbol" Style="{StaticResource DataGridHeaderStyle}"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+
+                        <DataGridTextColumn Binding="{Binding Name}" Width="100" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Name" Style="{StaticResource DataGridHeaderStyle}"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+
+                        <DataGridTextColumn Binding="{Binding MarketCapUsd, Converter={StaticResource CurrencyConverter}}" Width="180" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Market cap(Usd)" Style="{StaticResource DataGridHeaderStyle}"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Binding="{Binding PriceUsd, Converter={StaticResource CurrencyConverter}}" Width="*" >
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Price(Usd)" Style="{StaticResource DataGridHeaderStyle}"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        
+                        
+
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Border>
+        </StackPanel>
+          
+        
     </Grid>
 </UserControl>

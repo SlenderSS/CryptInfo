@@ -2,7 +2,7 @@
 
 namespace CryptInfo.Models.Assets
 {
-    internal class AssetData : ViewModels.Base.BaseViewModel
+    internal class AssetData 
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -29,13 +29,13 @@ namespace CryptInfo.Models.Assets
         public double? VolumeUsd24Hr { get; set; }
        
         [JsonProperty("priceUsd")]
-        public decimal? PriceUsd { get; set; }
+        public double? PriceUsd { get; set; }
        
         [JsonProperty("changePercent24Hr")]
-        public decimal? ChangePercent24Hr { get; set; }
+        public double? ChangePercent24Hr { get; set; }
       
         [JsonProperty("vwap24Hr")]
-        public decimal? Vwap24Hr { get; set; }
+        public double? Vwap24Hr { get; set; }
         
         [JsonProperty("explorer")]
         public string Explorer { get; set; }

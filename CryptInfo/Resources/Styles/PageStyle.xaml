@@ -6,8 +6,8 @@
 
         <Setter Property="RenderTransform">
             <Setter.Value>
-                <TranslateTransform X="0"
-                                    Y="50" />
+                <TranslateTransform X="50"
+                                    Y="0" />
             </Setter.Value>
         </Setter>
 
@@ -28,7 +28,7 @@
                                          Duration="0:0:1"
                                          From="0"
                                          To="1" />
-                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                                          From="50"
                                          To="0"
                                          Duration="0:0:0.8"

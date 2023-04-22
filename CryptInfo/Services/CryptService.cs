@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CryptInfo.Models.Assets;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -7,24 +9,26 @@ using System.Threading.Tasks;
 
 namespace CryptInfo.Services
 {
-    class CryptService
+    internal class CryptService
     {
         private const string _apiKey = "a6a82357-9743-4f77-ac59-e22b3f4f8e44";
-        private const string _baseURL = "http://api.coincap.io/v2/";
+        public readonly string BASE_URL = "http://api.coincap.io/v2";
 
-        public HttpClient httpClient;
-
-
-        //public async Task GetData(params string[] parts)
-        //{
-        //    var request = new HttpRequestMessage(HttpMethod.Get, string.Join("/", _baseURL, parts));
+        private HttpClient httpClient;
 
 
-        //}
+        public async Task<T> GetData<T>(params string[] parts)
+        {
+            
+            var request = new HttpRequestMessage(HttpMethod.Get, string.Join("/", parts));
 
+            var response = await httpClient.SendAsync(request);
 
+            response.EnsureSuccessStatusCode();
+            var json = await response.Content.ReadAsStringAsync();
 
-
+            return JsonConvert.DeserializeObject<T>(json);
+        }
 
         public CryptService()
         {

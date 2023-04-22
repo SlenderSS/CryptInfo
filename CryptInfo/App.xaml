@@ -9,9 +9,11 @@
                 
                 
                 <ResourceDictionary Source="Resources/Styles/Brushes.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/BorderStyle.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/ButtonStyles.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/TextStyles.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/PageStyle.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/DataGridStyles.xaml"/>
                 <ResourceDictionary Source="Resources/DataTemplates/DataTemplate.xaml" />
 
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
