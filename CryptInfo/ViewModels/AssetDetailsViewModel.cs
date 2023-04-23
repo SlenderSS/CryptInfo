@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -109,18 +110,27 @@ namespace CryptInfo.ViewModels
         public AssetDetailsViewModel(CryptService cryptService ,AssetData assetData)
         {
 
-            GetHistoryCommand = new LambdaCommand(OnGetHistoryCommandExecution);
-            CryptService = cryptService;
-            AssetData = assetData;
-
-            Task.Run(async () =>
+            try
             {
-                var result = await CryptService.GetData<MarketsCollection>(CryptService.BASE_URL, "assets", $"{assetData.Id}", "markets");
-                Markets = result.Data;
-            }).Wait();
+                GetHistoryCommand = new LambdaCommand(OnGetHistoryCommandExecution);
+                CryptService = cryptService;
+                AssetData = assetData;
+
+                Task.Run(async () =>
+                {
+                    var result = await CryptService.GetData<MarketsCollection>(CryptService.BASE_URL, "assets", $"{assetData.Id}", "markets");
+                    Markets = result.Data;
+                }).Wait();
 
 
-            OnGetHistoryCommandExecution("m1");
+             OnGetHistoryCommandExecution("m1");
+
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.Message);
+            }
         }
     }
 }
