@@ -31,44 +31,44 @@
         <StackPanel Grid.Column="0" Orientation="Vertical" Margin="50,70,20,70">
             <StackPanel Style="{StaticResource StackPanelStyle}">
                 <TextBlock Text="MARKET CAP - " Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                           Foreground="{StaticResource MaterialDesignDarkForeground}"/>
                 <TextBlock Text="{Binding GeneralInfo.MarketCapUsd, Converter={StaticResource CurrencyConverter}}" Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                           Foreground="{StaticResource MaterialDesignDarkForeground}"/>
             </StackPanel>
             <StackPanel Style="{StaticResource StackPanelStyle}">
                 <TextBlock Text="EXCHANGE VOL - " Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                           Foreground="{StaticResource MaterialDesignDarkForeground}"/>
                 <TextBlock Text="{Binding GeneralInfo.ExchangeVolume, Converter={StaticResource CurrencyConverter}}" Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                           Foreground="{StaticResource MaterialDesignDarkForeground}"/>
             </StackPanel>
             <StackPanel Style="{StaticResource StackPanelStyle}">
                 <TextBlock Text="ASSETS - " Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                           Foreground="{StaticResource MaterialDesignDarkForeground}"/>
                 <TextBlock Text="{Binding GeneralInfo.Assets}" Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                           Foreground="{StaticResource MaterialDesignDarkForeground}"/>
             </StackPanel>
             <StackPanel Style="{StaticResource StackPanelStyle}">
                 <TextBlock Text="EXCHANGES - " Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                           Foreground="{StaticResource MaterialDesignDarkForeground}"/>
                 <TextBlock Text="{Binding GeneralInfo.Exchanges}" Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                           Foreground="{StaticResource MaterialDesignDarkForeground}"/>
             </StackPanel>
 
             <StackPanel Style="{StaticResource StackPanelStyle}">
                 <TextBlock Text="MARKETS - " Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                           Foreground="{StaticResource MaterialDesignDarkForeground}"/>
                 <TextBlock Text="{Binding GeneralInfo.Markets}" Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                           Foreground="{StaticResource MaterialDesignDarkForeground}"/>
             </StackPanel>
 
             <StackPanel Style="{StaticResource StackPanelStyle}">
                 
                 <TextBlock Text="{Binding GeneralInfo.DominateCurrency}" Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                           Foreground="{StaticResource MaterialDesignDarkForeground}"/>
                 <TextBlock Text=" DOM INDEX - " Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                           Foreground="{StaticResource MaterialDesignDarkForeground}"/>
                 <TextBlock Text="{Binding GeneralInfo.DomIndex, StringFormat={}{0:#0.00'%'}}" Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                           Foreground="{StaticResource PrimaryHueMidForegroundBrush}"/>
+                           Foreground="{StaticResource MaterialDesignDarkForeground}"/>
             </StackPanel>
 
         </StackPanel>
@@ -80,19 +80,18 @@
                    HorizontalAlignment="Center" 
                    FontSize="35"
                    FontFamily="{StaticResource MaterialDesignFont}"
-                   FontStyle="Italic"/>
+                   />
 
 
 
-            <Border Grid.Column="1" Style="{StaticResource BorderStyle1}">
+            <Border Grid.Column="1" Style="{StaticResource BorderStyle1}" Margin="10,10,20,0">
                 <DataGrid ItemsSource="{Binding TopCryptocurrency}" Height="500"
-                      AutoGenerateColumns="False"
-                      Style="{StaticResource MaterialDesignDataGrid}"
+                      AutoGenerateColumns="False"             
                       Background="Transparent"
                       HorizontalGridLinesBrush="Transparent"
                       IsReadOnly="True"                         
-                      IsEnabled="False"
-                      CellStyle="{StaticResource DataGridCellStyle}"
+                      Padding="10"
+                     
                       FontSize="18">
                     <DataGrid.Columns>
 

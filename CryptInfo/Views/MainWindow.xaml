@@ -21,7 +21,15 @@
     <Window.Resources>
         <cmd:CloseAppCommand x:Key="CloseAppCommand"/>
         <cmd:MoveWindowCommand x:Key="MoveWindowCommand"/>
-        
+        <Style x:Key="NavigateButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatDarkBgButton}">
+            <Setter Property="Margin" Value="50,0,20,0"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontFamily" Value="{StaticResource MaterialDesignFont}"/>
+            <Setter Property="Background" Value="{StaticResource ButtonNavigateBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonNavigateBorder}"/>
+        </Style>
         
     </Window.Resources>
 
@@ -47,8 +55,11 @@
         </Grid>
         <Grid Grid.Row="1" Background="#323C42">
             <StackPanel Orientation="Horizontal" >
-                <!--<Button Style="{StaticResource MetroButton}" Height="50" Width="150" />-->
-            </StackPanel>
+                <Button Content="Home" Command="{Binding HomeCommand}" Style="{StaticResource NavigateButton}" />
+                <Button Content="Coins" Command="{Binding AssetsCommand}" Style="{StaticResource NavigateButton}" />
+                <Button Content="Markets" Command="{Binding MarketsCommand}" Style="{StaticResource NavigateButton}" />
+               
+                    </StackPanel>
         </Grid>
 
         <Grid Grid.Row="2">

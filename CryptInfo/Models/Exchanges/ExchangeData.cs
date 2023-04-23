@@ -20,7 +20,7 @@ namespace CryptInfo.Models.Exchanges
         public int Rank { get; set; }
 
         [JsonProperty("percentTotalVolume")]
-        public decimal? PercentTotalVolume { get; set; }
+        public double? PercentTotalVolume { get; set; }
 
     
         [JsonProperty("volumeUsd")]

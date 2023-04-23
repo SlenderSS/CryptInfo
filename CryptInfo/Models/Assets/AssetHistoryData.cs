@@ -6,7 +6,7 @@ namespace CryptInfo.Models.Assets
     internal class AssetHistoryData : ViewModels.Base.BaseViewModel
     {
         [JsonProperty("priceUsd")]
-        public string PriceUsd { get; set; }
+        public double? PriceUsd { get; set; }
 
         /// <summary>
         /// Timestamp in UNIX milliseconds.
@@ -17,13 +17,13 @@ namespace CryptInfo.Models.Assets
         /// <summary>
         /// The available supply for trading.
         /// </summary>
-        [JsonProperty("circulatingSupply")]
-        public string CirculatingSupply { get; set; }
+        //[JsonProperty("circulatingSupply")]
+        //public string CirculatingSupply { get; set; }
 
-        /// <summary>
-        /// The date.
-        /// </summary>
-        [JsonProperty("date")]
-        public DateTimeOffset? Date { get; set; }
+        ///// <summary>
+        ///// The date.
+        ///// </summary>
+        //[JsonProperty("date")]
+        //public DateTimeOffset? Date { get; set; }
     }
 }

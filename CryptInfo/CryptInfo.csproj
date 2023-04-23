@@ -52,8 +52,16 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="OxyPlot, Version=2.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Core.2.0.0\lib\net45\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.Wpf, Version=2.0.0.0, Culture=neutral, PublicKeyToken=75e952ba404cdbb0, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Wpf.2.0.0\lib\net45\OxyPlot.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
@@ -84,21 +92,22 @@
     <Compile Include="Infrastructure\Commands\RelayCommand.cs" />
     <Compile Include="Infrastructure\Converters\Converter.cs" />
     <Compile Include="Infrastructure\Converters\CurrencyConverter.cs" />
+    <Compile Include="Infrastructure\Converters\TimeConverter.cs" />
     <Compile Include="Models\Exchanges\Exchange.cs" />
     <Compile Include="Models\Exchanges\ExchangeCollection.cs" />
     <Compile Include="Models\Exchanges\ExchangeData.cs" />
     <Compile Include="Models\GeneralInfo.cs" />
     <Compile Include="ViewModels\AssetDetailsViewModel.cs" />
     <Compile Include="ViewModels\AssetsViewModel.cs" />
-    <Compile Include="ViewModels\MarketsViewModel.cs" />
+    <Compile Include="ViewModels\ExchangesViewModel.cs" />
     <Compile Include="Views\AssetDetailsView.xaml.cs">
       <DependentUpon>AssetDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AssetsView.xaml.cs">
       <DependentUpon>AssetsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MarketsView.xaml.cs">
-      <DependentUpon>MarketsView.xaml</DependentUpon>
+    <Compile Include="Views\ExchangesView.xaml.cs">
+      <DependentUpon>ExchangesView.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\DataTemplates\DataTemplate.xaml">
       <SubType>Designer</SubType>
@@ -117,6 +126,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Styles\DataGridStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\OxyPlotStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -171,7 +184,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\MarketsView.xaml">
+    <Page Include="Views\ExchangesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

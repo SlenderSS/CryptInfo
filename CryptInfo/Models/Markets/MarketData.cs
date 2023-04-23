@@ -12,9 +12,6 @@ namespace CryptInfo.Models.Markets
         [JsonProperty("exchangeId")]
         public string ExchangeId { get; set; }
        
-        [JsonProperty("rank")]
-        public int? Rank { get; set; }
-     
         [JsonProperty("baseSymbol")]
         public string BaseSymbol { get; set; }
       
@@ -25,24 +22,14 @@ namespace CryptInfo.Models.Markets
         public string QuoteSymbol { get; set; }
         
         [JsonProperty("quoteId")]
-        public string QuoteId { get; set; }
-              
-        [JsonProperty("priceQuote")]
-        public decimal? PriceQuote { get; set; }
+        public string QuoteId { get; set; }             
 
         [JsonProperty("priceUsd")]
-        public decimal? PriceUsd { get; set; }
+        public double? PriceUsd { get; set; }
 
         [JsonProperty("volumeUsd24Hr")]
         public double? VolumeUsd24Hr { get; set; }
 
-        [JsonProperty("percentExchangeVolume")]
-        public decimal? PercentExchangeVolume { get; set; }
-
-        [JsonProperty("tradesCount24Hr")]
-        public int? TradesCount24Hr { get; set; }
-
-        [JsonProperty("updated")]
-        public long? Updated { get; set; }
+        
     }
 }

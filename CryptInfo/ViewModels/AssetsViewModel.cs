@@ -14,9 +14,14 @@ namespace CryptInfo.ViewModels
 {
     internal class AssetsViewModel :Base.BaseViewModel
     {
-        public readonly CryptService CryptService;
 
         private readonly Action<string, AssetData> _action;
+
+
+
+        public AssetData SelectedAsset { get; set; }
+
+        public readonly CryptService CryptService;
 
         private AssetsCollection _assets;
         public AssetsCollection AssetsCol { get => _assets; 
@@ -28,12 +33,6 @@ namespace CryptInfo.ViewModels
                 OnPropertyChanged(nameof(AssetsCollection)); 
             } 
         }
-
-
-
-
-
-
 
 
         #region Assets filter
@@ -73,9 +72,13 @@ namespace CryptInfo.ViewModels
 
         public ICommand AssetDetailsCommand { get; set; }
 
-        private void AssetDetails(object obj) => _action.Invoke("AD", SelectedAsset);
+        private void AssetDetails(object obj)
+        {
+            if (SelectedAsset != null)
+                _action.Invoke("AD", SelectedAsset);
+            else return;
+        }
 
-        public AssetData SelectedAsset { get; set; }
 
         public AssetsViewModel(CryptService cryptService, AssetsCollection assetsCollection, Action<string, AssetData> action)
         {

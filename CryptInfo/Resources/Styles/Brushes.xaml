@@ -6,7 +6,10 @@
     <SolidColorBrush x:Key="TextColor_1" Color="#7CC5BD"/>
     <SolidColorBrush x:Key="TextColor_2" Color="#D3D77A"/>
 
-
-
+    <SolidColorBrush x:Key="ButtonNavigateBackground" Color="#FF6A969B"/>
+    <SolidColorBrush x:Key="ButtonNavigateBorder" Color="#FF5597B0"/>
    
+    <SolidColorBrush x:Key="ButtonColorText_1" Color="#75CEAB"/>
+
+
 </ResourceDictionary>

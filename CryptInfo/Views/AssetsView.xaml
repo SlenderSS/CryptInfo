@@ -27,8 +27,8 @@
                  FontSize="23" 
                  Width="400" 
                  HorizontalAlignment="Right" 
-                 Foreground="#A4A4A4"
-                 Style="{DynamicResource MaterialDesignOutlinedTextBox}" 
+                 Foreground="{StaticResource ButtonColorText_1}"
+                 Style="{StaticResource MaterialDesignTextBoxBase}" 
                  />
 
 
@@ -39,23 +39,16 @@
             <DataGrid ItemsSource="{Binding AssetsCollection}" 
                       x:Name="AssetsDataGrid"
                       Height="480"
-                     
+                      ToolTip="Double click for detail information"
                       SelectedItem="{Binding SelectedAsset}"
-                      AutoGenerateColumns="False"                         
-                      Style="{StaticResource MaterialDesignDataGrid}"
+                      AutoGenerateColumns="False"                                              
                       Background="Transparent"
-                      HorizontalGridLinesBrush="Transparent"
                       IsReadOnly="True"                                               
-                      CellStyle="{StaticResource DataGridCellStyle}"
                       FontSize="18"
                       VirtualizingPanel.IsContainerVirtualizable="True"
                       VirtualizingPanel.IsVirtualizing="True"
                       VirtualizingPanel.VirtualizationMode="Recycling">
-                <DataGrid.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel/>
-                    </ItemsPanelTemplate>
-                </DataGrid.ItemsPanel>
+                
 
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDoubleClick">

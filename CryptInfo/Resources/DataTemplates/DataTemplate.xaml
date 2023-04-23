@@ -11,5 +11,12 @@
     <DataTemplate DataType="{x:Type vm:AssetsViewModel}">
         <view:AssetsView/>
     </DataTemplate>
-    
+
+    <DataTemplate DataType="{x:Type vm:AssetDetailsViewModel}">
+        <view:AssetDetailsView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:ExchangesViewModel}">
+        <view:ExchangesView/>
+    </DataTemplate>
 </ResourceDictionary>

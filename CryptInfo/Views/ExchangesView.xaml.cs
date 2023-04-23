@@ -18,9 +18,9 @@ namespace CryptInfo.Views
     /// <summary>
     /// Interaction logic for Markets.xaml
     /// </summary>
-    public partial class MarketsView : UserControl
+    public partial class ExchangesView : UserControl
     {
-        public MarketsView()
+        public ExchangesView()
         {
             InitializeComponent();
         }

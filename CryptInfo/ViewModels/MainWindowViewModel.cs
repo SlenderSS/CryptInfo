@@ -53,13 +53,31 @@ namespace CryptInfo.ViewModels
 
         public ICommand HomeCommand { get; set; }
         public ICommand AssetsCommand { get; set; }
+        public ICommand MarketsCommand { get; set; }
 
         #endregion
 
 
 
         private void Home(object obj) => CurrentView = new HomeViewModel(CryptService, GeneralInfo);
+        private bool CanHomeExecute(object obj)
+        {
+            if (!(CurrentView is HomeViewModel)) return true;
+            return false;
+        }
         private void Assets(object obj) => CurrentView = new AssetsViewModel(CryptService, AssetsCol, OpenUserControl);
+        private bool CanAssetsExecute(object obj)
+        {
+            if (!(CurrentView is AssetsViewModel)) return true;
+            return false;
+        }
+        private void Exchanges(object obj) => CurrentView = new ExchangesViewModel(ExchangesCol);
+
+        private bool CanExchangesExecute(object obj)
+        {
+            if (!(CurrentView is ExchangesViewModel)) return true;
+            return false;
+        }
 
 
 
@@ -68,7 +86,7 @@ namespace CryptInfo.ViewModels
             switch (path)
             {
                 case "AD":
-                    CurrentView = new AssetDetailsViewModel(assetData);
+                    CurrentView = new AssetDetailsViewModel(CryptService,assetData);
                     break;
             }
 
@@ -77,8 +95,9 @@ namespace CryptInfo.ViewModels
         public MainWindowViewModel()
         {
             #region Commands
-            HomeCommand = new LambdaCommand(Home);
-            AssetsCommand = new LambdaCommand(Assets);
+            HomeCommand = new LambdaCommand(Home, CanHomeExecute);
+            AssetsCommand = new LambdaCommand(Assets, CanAssetsExecute);
+            MarketsCommand = new LambdaCommand(Exchanges, CanExchangesExecute);
 
             #endregion
 
@@ -109,8 +128,8 @@ namespace CryptInfo.ViewModels
 
 
 
-            //CurrentView = new HomeViewModel(CryptService, GeneralInfo);
-            CurrentView = new AssetsViewModel(CryptService, AssetsCol, OpenUserControl);
+            CurrentView = new HomeViewModel(CryptService, GeneralInfo);
+           
         }
     }
 }
